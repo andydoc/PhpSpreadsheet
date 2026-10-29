@@ -2,6 +2,8 @@ name: main
 on: [ push, pull_request, merge_group ]
 permissions:
   contents: read # to fetch code (actions/checkout)
+env:
+  SKIP_URL_IMAGE_TEST: '1' # readthedocs answers 403 to GitHub runners
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -236,8 +238,12 @@ jobs:
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Coverage
+        run: ./vendor/bin/phpunit --coverage-clover coverage-clover.xml
+
+      - name: Upload coverage
+        # forks are not registered on Scrutinizer (404)
+        if: github.repository == 'PHPOffice/PhpSpreadsheet'
         run: |
-          ./vendor/bin/phpunit --coverage-clover coverage-clover.xml
           composer global require scrutinizer/ocular
           ~/.composer/vendor/bin/ocular code-coverage:upload --format=php-clover coverage-clover.xml
 
