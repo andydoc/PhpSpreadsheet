@@ -12,8 +12,6 @@ jobs:
         experimental:
           - false
         php-version:
-          - '8.1'
-          - '8.2'
           - '8.3'
 
         include:
@@ -175,7 +173,7 @@ jobs:
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Code Version Compatibility check with PHP_CodeSniffer
-        run: ./vendor/bin/phpcs -q --report-width=200 --report=summary,full src/ --standard=PHPCompatibility --runtime-set testVersion 8.1- --exclude=PHPCompatibility.Variables.ForbiddenThisUseContexts
+        run: ./vendor/bin/phpcs -q --report-width=200 --report=summary,full src/ --standard=PHPCompatibility --runtime-set testVersion 8.3- --exclude=PHPCompatibility.Variables.ForbiddenThisUseContexts
 
   phpstan:
     runs-on: ubuntu-latest
