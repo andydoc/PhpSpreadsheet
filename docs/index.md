@@ -36,7 +36,7 @@ for details.
 LTS: Support for PHP versions will only be maintained for a period of six months beyond the
 [end of life of that PHP version](https://www.php.net/eol.php).
 
-Currently, the required PHP minimum version is __PHP 8.1__, and we [will support that version](https://www.php.net/eol.php) until June 2026.
+Currently, the required PHP minimum version is __PHP 8.3__ (this fork dropped PHP 8.1 and 8.2 because they no longer receive security fixes).
 
 Support for PHP versions will only be maintained for a period of six months beyond the
 [end of life](https://www.php.net/supported-versions) of that PHP version.
